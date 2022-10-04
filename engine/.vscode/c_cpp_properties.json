@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "DefaultIncludePath",
+            "includePath": [
+                "./src/"
+            ],
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17"
+        }
+    ],
+    "version": 4
+}

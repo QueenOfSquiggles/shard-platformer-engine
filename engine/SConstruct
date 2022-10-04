@@ -1,0 +1,15 @@
+import glob
+
+
+SOURCE_DIR = "./src"
+STATIC_LINK_LIBS = ["raylib", "lua"]
+
+
+def get_all_source_files():
+    files = glob.glob("**/*.cpp", recursive=True)
+    return files
+
+
+env = Environment()
+env.Program(target="build/main", source=get_all_source_files(),
+            LIBS=STATIC_LINK_LIBS)
