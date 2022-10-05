@@ -1,44 +1,72 @@
-#include <raylib.h>
-#include <raymath.h>
-#include <iostream>
-#include <string>
+#define RAYGUI_IMPLEMENTATION
+
 
 #include "modules/lua/LuaSystems.hpp"
+#include "modules/logging/Log.hpp"
+#include "modules/io/IO.hpp"
+#include "modules/gui/Containers/VBoxContainer.hpp"
+
+#include <iostream>
+#include <string>
+#include <raymath.h>
 
 int lua_set_window_name(lua_State* state);
 int lua_set_bg_colour(lua_State* state);
-bool match_str(std::string str1, std::string str2);
 
-Color bgColor = RAYWHITE;
+Color bgColor = BLACK;
+logging::Log logMain = logging::Log("MAIN");
+
+void tracebackIntermediary(int msgType, const char* msg, va_list args);
 
 int main()
 {
+
+    SetTraceLogCallback(tracebackIntermediary);
+
+    logMain.debug("Creating window");
     const int screenWidth = 800;
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "Test Window");
     SetTargetFPS(60);
-
-    lua::LuaManager luaMan;
-    luaMan.createNewState(true);
-    luaMan.registerMethod("set_title", lua_set_window_name);
-    luaMan.registerMethod("set_bg_colour", lua_set_bg_colour);
-    luaMan.loadFile("./demo.lua");
-    luaMan.executeState();
-    //luaMan.executeLuaString("test_call()");
-    luaMan.close();
+    SetWindowState(FLAG_WINDOW_RESIZABLE);
     
+
+    logMain.debug("Testing panel container GUI elements");
+
+    gui::VBoxContainer panel = gui::VBoxContainer("Test VBox");
+    panel.bounds.x = 20;
+    panel.bounds.y = 20;
+    panel.bounds.width = 300;
+    panel.bounds.height = 300;
+    
+    gui::PanelContainer sub1 = gui::PanelContainer("Sub Panel 1");
+    sub1.panelColour = RED;
+    gui::PanelContainer sub2 = gui::PanelContainer("Sub Panel 2");
+    sub2.panelColour = ORANGE;
+    gui::PanelContainer sub3 = gui::PanelContainer("Sub Panel 3");
+    sub3.panelColour = YELLOW;
+    gui::PanelContainer sub4 = gui::PanelContainer("Sub Panel 4");
+    sub4.panelColour = BLUE;
+    gui::PanelContainer sub5 = gui::PanelContainer("Sub Panel 5");
+    sub5.panelColour = GREEN;
+
+    panel.addElement(&sub1);
+    panel.addElement(&sub2);
+    panel.addElement(&sub3);
+    panel.addElement(&sub4);
+    panel.addElement(&sub5);
+
+    logMain.debug("Starting Game Loop");
     while(!WindowShouldClose())
     {
         BeginDrawing();
-
         ClearBackground(bgColor);
-        DrawText("This is a change in the codebase", 10, 10, 20, BLACK);
-
+        panel.draw();
         EndDrawing();
     }
 
-
+    logMain.debug("Closing window and performing cleanup");
     CloseWindow();
 
     return 0;
@@ -88,7 +116,8 @@ int lua_set_bg_colour(lua_State* state)
     return 1;
 }
 
-bool match_str(std::string str1, std::string str2)
+void tracebackIntermediary(int msgType, const char* msg, va_list args)
 {
-    return false;
+    std::string modifiedMsg = "[RAYLIB]" + std::string(msg);
+    logMain.raylibLogCallback(msgType, modifiedMsg.c_str(), args);
 }

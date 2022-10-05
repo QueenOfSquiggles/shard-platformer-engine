@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <raylib.h>
 
 #define LOG_COL_BLACK "\033[30m"
 #define LOG_COL_BLACK_BOLD "\033[1;30m"
@@ -29,7 +30,8 @@ namespace logging
     {
         string errColour = LOG_COL_RED_BOLD;
         string warningColour = LOG_COL_YELLOW_BOLD;
-        string logColour = LOG_COL_BLUE; 
+        string logColour = LOG_COL_RESET; // no colour 
+        string debugColour = LOG_COL_CYAN_BOLD; 
         string name = "DefaultLogger";
 
     public:
@@ -38,6 +40,8 @@ namespace logging
         void log(string text);
         void err(string text);
         void warn(string text);
+        void debug(string text);
         void print(string text, string colour);
+        void raylibLogCallback(int msgType, const char* text, va_list args);
     };
 }

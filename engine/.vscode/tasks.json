@@ -8,6 +8,10 @@
             "type": "shell",
             "command": "scons",
             "problemMatcher": "$gcc",
+            "args": [
+                "-Q",
+                "debug=1" // defines "DEBUG" for debugging purposes. Default is debug=0
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
