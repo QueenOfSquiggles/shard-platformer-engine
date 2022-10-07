@@ -3,7 +3,8 @@
         {
             "name": "DefaultIncludePath",
             "includePath": [
-                "./src/"
+                "./src/",
+                "./include/"
             ],
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",

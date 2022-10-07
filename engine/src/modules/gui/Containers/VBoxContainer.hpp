@@ -10,7 +10,8 @@ namespace gui {
         VBoxContainer(string m_name) : PanelContainer(m_name){}
         
         int separation = 10;
-        void addElement(GuiElement *element) override;
+        virtual void draw(Rectangle elementBounds, Theme* parentTheme) override;
+
 
     };
 }

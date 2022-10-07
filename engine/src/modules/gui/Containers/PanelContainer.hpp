@@ -11,10 +11,7 @@ namespace gui
             panelLabel = Label(m_name);
         }
         Label panelLabel = Label("_");
-        Color panelColour = WHITE;
-        Color fontColour = BLACK;
-        Padding padding = (Padding){10, 10, 10, 10};
-        virtual void draw() override;
-        virtual void addElement(GuiElement *element) override;
+        Padding padding = (Padding){30, 30, 30, 30};
+        virtual void draw(Rectangle elementBounds, Theme* parentTheme) override;
     };
 }

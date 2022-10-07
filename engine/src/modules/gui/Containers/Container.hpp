@@ -15,6 +15,21 @@ namespace gui
         {
             elements.push_back(element);
         }
+
+        int getElementCount()
+        {
+            return elements.size();
+        }
+
+        GuiElement* getElement(int index)
+        {
+            return elements[index];
+        }
+
+        void removeElement(int index)
+        {
+            elements.erase(elements.begin() + index);
+        }
     };
 
 

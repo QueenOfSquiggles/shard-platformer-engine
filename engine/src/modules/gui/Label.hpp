@@ -12,15 +12,13 @@ namespace gui
         }
         string text = "Example Text";
         
-        Color bgColour = BLACK;
-        Color fontColour = WHITE;
         Padding bgPadding;
-        int fontSize = 12;
+        int fontSize = 18;
 
-        virtual void draw() override
+        virtual void draw(Rectangle bounds, Theme* parentTheme) override
         {
-            DrawRectangle(bounds.x, bounds.y, bounds.width, bounds.height, bgColour);
-            DrawText(text.c_str(), bounds.x, bounds.y, fontSize, fontColour);
+            DrawRectangle(bounds.x, bounds.y, bounds.width, fontSize+2, getThemeProp(parentTheme, "label:bg", BLACK));
+            DrawText(text.c_str(), bounds.x+5, bounds.y, fontSize, getThemeProp(parentTheme, "label:font_col", WHITE));
         }
 
 
