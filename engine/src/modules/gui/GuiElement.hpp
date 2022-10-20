@@ -1,53 +1,49 @@
+/**
+ * @file GuiElement.hpp
+ * @author your name (you@domain.com)
+ * @brief 
+ * @version 0.1
+ * @date 2022-10-19
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
 #pragma once
+
 #include <raylib.h>
-#include <string>
-#include "../logging/Log.hpp"
-#include "Theme.hpp"
+#define RAYGUI_IMPLEMENTATION
+#include <raygui/raygui.h>
 
-using namespace std;
+#include <set>
 
+/// @brief the namespace for all GUI related components
 namespace gui
 {
-
-    struct Padding {
-        int left;
-        int right;
-        int top;
-        int bottom;
-    };
-
-    class GuiElement
+    /// @brief The parent class for all GUIElements
+    class GuiElement 
     {
-        Theme *theme = nullptr;
     protected:
-        logging::Log guiLog = logging::Log("GUI");
-
-        Theme* getTheme(Theme *parentTheme) { if (theme == nullptr) return parentTheme; else return theme; }
-
-        Color getThemeProp(Theme* parentTheme, string propertyName) { return getThemeProp(parentTheme, propertyName, PINK); } 
-
-        Color getThemeProp(Theme* parentTheme, string propertyName, Color defaultColour) 
+        enum SizeFlag
         {
-            Theme* t = getTheme(parentTheme);
-            return t->getProperty(propertyName, defaultColour);
-        }
+            EXPAND, SHRINK
+        };
+        
+        Vector2 min_size = (Vector2){16.0f, 16.0f};
+        SizeFlag size_flag = SizeFlag::EXPAND;
+        bool visible = false;
+        std::set<GuiElement*> child_elements;
+
+        /// @brief virtual function for drawing the specific GUI element. Uses raygui calls to draw with specified bounds to create a responsive UI
+        /// @param bounds the boundaries of this element provided by the parent. This allows containers to control the size of child elements. 
+        virtual void draw_gui_element(Rectangle bounds);
+
     public:
+        /// @brief adds an element as a child of this element. 
+        /// @param element the element to be added
+        void add_child(GuiElement* element);
 
-        ~GuiElement(){
-            delete(theme);
-        }
-        string name;
-        Rectangle bounds;
-
-        GuiElement(string m_name) {name = m_name;}
-        bool visible = true;
-        virtual void draw(Rectangle elementBounds, Theme *parentTheme){
-            // this prints because we really don't want to be drawing plain GuiElements. This shouldn't be called at any point
-            guiLog.debug("Drawing debug Gui Element: " + name);
-            Theme *curTheme = getTheme(parentTheme);
-            DrawRectangle(elementBounds.x, elementBounds.y, elementBounds.width, elementBounds.height, curTheme->getProperty("default_panel:bg", PINK));
-        }
-        void setTheme(Theme *n_theme) { theme = n_theme; }
-
+        /// @brief draws this element as the root, which draws all child elements
+        void draw_root();
     };
 }

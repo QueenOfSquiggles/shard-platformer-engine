@@ -1,0 +1,89 @@
+\hypertarget{classgui_1_1GuiElement}{}\doxysection{gui\+::Gui\+Element Class Reference}
+\label{classgui_1_1GuiElement}\index{gui::GuiElement@{gui::GuiElement}}
+
+
+The parent class for all GUIElements.  
+
+
+
+
+{\ttfamily \#include $<$Gui\+Element.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classgui_1_1GuiElement_a9cf260d6ca9c6fc0b66419b6c944c941}{add\+\_\+child}} (\mbox{\hyperlink{classgui_1_1GuiElement}{Gui\+Element}} $\ast$element)
+\begin{DoxyCompactList}\small\item\em adds an element as a child of this element. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a1292a3e56cc7a6c34c316da6493a55c7}\label{classgui_1_1GuiElement_a1292a3e56cc7a6c34c316da6493a55c7}} 
+void \mbox{\hyperlink{classgui_1_1GuiElement_a1292a3e56cc7a6c34c316da6493a55c7}{draw\+\_\+root}} ()
+\begin{DoxyCompactList}\small\item\em draws this element as the root, which draws all child elements \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a2f4c16ca4524f8d23d8c182867e2cc6b}\label{classgui_1_1GuiElement_a2f4c16ca4524f8d23d8c182867e2cc6b}} 
+enum {\bfseries Size\+Flag} \{ {\bfseries EXPAND}
+, {\bfseries SHRINK}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classgui_1_1GuiElement_afe9fa8392c1d7bebcc31240b88fa352c}{draw\+\_\+gui\+\_\+element}} (Rectangle bounds)
+\begin{DoxyCompactList}\small\item\em virtual function for drawing the specific GUI element. Uses raygui calls to draw with specified bounds to create a responsive UI \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a267860a4f4cb52a89c120d75202dc3ce}\label{classgui_1_1GuiElement_a267860a4f4cb52a89c120d75202dc3ce}} 
+Vector2 {\bfseries min\+\_\+size} = (Vector2)\{16.\+0f, 16.\+0f\}
+\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a04a51b01501f1fc4762fbf4a898c8d2b}\label{classgui_1_1GuiElement_a04a51b01501f1fc4762fbf4a898c8d2b}} 
+Size\+Flag {\bfseries size\+\_\+flag} = Size\+Flag\+::\+EXPAND
+\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a104f8db45ef188cbbc6256bf4c14a8d3}\label{classgui_1_1GuiElement_a104f8db45ef188cbbc6256bf4c14a8d3}} 
+bool {\bfseries visible} = false
+\item 
+\mbox{\Hypertarget{classgui_1_1GuiElement_a3faa91b1fc9b4790a91fe11ab1dec039}\label{classgui_1_1GuiElement_a3faa91b1fc9b4790a91fe11ab1dec039}} 
+std\+::set$<$ \mbox{\hyperlink{classgui_1_1GuiElement}{Gui\+Element}} $\ast$ $>$ {\bfseries child\+\_\+elements}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The parent class for all GUIElements. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classgui_1_1GuiElement_a9cf260d6ca9c6fc0b66419b6c944c941}\label{classgui_1_1GuiElement_a9cf260d6ca9c6fc0b66419b6c944c941}} 
+\index{gui::GuiElement@{gui::GuiElement}!add\_child@{add\_child}}
+\index{add\_child@{add\_child}!gui::GuiElement@{gui::GuiElement}}
+\doxysubsubsection{\texorpdfstring{add\_child()}{add\_child()}}
+{\footnotesize\ttfamily void gui\+::\+Gui\+Element\+::add\+\_\+child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classgui_1_1GuiElement}{Gui\+Element}} $\ast$}]{element }\end{DoxyParamCaption})}
+
+
+
+adds an element as a child of this element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & the element to be added \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classgui_1_1GuiElement_afe9fa8392c1d7bebcc31240b88fa352c}\label{classgui_1_1GuiElement_afe9fa8392c1d7bebcc31240b88fa352c}} 
+\index{gui::GuiElement@{gui::GuiElement}!draw\_gui\_element@{draw\_gui\_element}}
+\index{draw\_gui\_element@{draw\_gui\_element}!gui::GuiElement@{gui::GuiElement}}
+\doxysubsubsection{\texorpdfstring{draw\_gui\_element()}{draw\_gui\_element()}}
+{\footnotesize\ttfamily virtual void gui\+::\+Gui\+Element\+::draw\+\_\+gui\+\_\+element (\begin{DoxyParamCaption}\item[{Rectangle}]{bounds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+virtual function for drawing the specific GUI element. Uses raygui calls to draw with specified bounds to create a responsive UI 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bounds} & the boundaries of this element provided by the parent. This allows containers to control the size of child elements. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/nessa/\+Documents/\+Programming/\+CPP/engine/workspace/engine/src/modules/gui/\mbox{\hyperlink{GuiElement_8hpp}{Gui\+Element.\+hpp}}\end{DoxyCompactItemize}
