@@ -8,6 +8,7 @@
 #include <fstream>
 
 #include <nlohmann/json.hpp>
+#include <toml++/toml.hpp>
 #include "modules/logging/Log.hpp"
 
 using json = nlohmann::json;
